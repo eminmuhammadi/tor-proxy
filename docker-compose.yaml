@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+    tor_proxy:
+      container_name: tor_proxy
+      build: .
+      ports:
+        - "9050:9050"
+        - "9051:9051"
+      volumes:
+        - .:/app

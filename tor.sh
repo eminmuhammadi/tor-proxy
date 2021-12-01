@@ -1,16 +1,20 @@
 #!/bin/bash
 
-BASE_FOLDER="$HOME/tor-proxy"
+BASE_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TORRC_FILE="$BASE_FOLDER/torrc"
 CLEAN_TORRC_FILE="$TORRC_FILE.env"
 
-TOR_SOCKS_PORT="9050"   # Tor SOCKS port
+TOR_SOCKS_PORT="9050"         # Tor SOCKS port
+TOR_CONTROL_PORT="9051"       # Control Port
 
-TOR_PASSWORD="password" # Password for Control Port
-TOR_CONTROL_PORT="9051" # Control Port
+TOR_PASSWORD="password"       # Password for Control Port
+TOR_USERNAME="username"       # Username for SOCKS5 proxy 
+TOR_PASSWORD="password"       # Password for SOCKS5 proxy
 
 export TOR_CONTROL_PORT=$TOR_CONTROL_PORT
 export TOR_SOCKS_PORT=$TOR_SOCKS_PORT
+export TOR_USERNAME=$TOR_USERNAME
+export TOR_PASSWORD=$TOR_PASSWORD
 
 sudo mkdir -p $BASE_FOLDER/data
 export TOR_PROJECT_DATA_FOLDER=$BASE_FOLDER/data

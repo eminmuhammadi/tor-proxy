@@ -22,3 +22,8 @@ bash tor.sh
 ```bash
 bash kill.sh
 ```
+
+## Run via docker-compose
+```bash
+docker-compose up -d --build
+```
