@@ -11,6 +11,9 @@ TOR_PASSWORD="password"       # Password for Control Port
 TOR_PROXY_USERNAME="username" # Username for SOCKS5 proxy 
 TOR_PROXY_PASSWORD="password" # Password for SOCKS5 proxy
 
+# TODO: Fix vulnerability here
+sudo chmod 777 $BASE_FOLDER
+
 export TOR_CONTROL_PORT=$TOR_CONTROL_PORT
 export TOR_SOCKS_PORT=$TOR_SOCKS_PORT
 export TOR_PROXY_USERNAME=$TOR_PROXY_USERNAME

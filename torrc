@@ -1,6 +1,5 @@
 DataDirectory $TOR_PROJECT_DATA_FOLDER
 Log notice file $TOR_PROJECT_LOGS_FOLDER/notices.log
-Log notice stderr
 
 SocksPort 0.0.0.0:$TOR_SOCKS_PORT      # Socks Port
 ControlPort 0.0.0.0:$TOR_CONTROL_PORT  # Control port
