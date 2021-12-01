@@ -30,8 +30,5 @@ printf "Tor service starting...\n"
 # Generate torrc file
 envsubst < $TORRC_FILE > $CLEAN_TORRC_FILE
 
-# New Circuit in 10 seconds
-watch -n 10 $BASE_FOLDER/new_circuit.sh
-
 # Tor process
 tor -f $CLEAN_TORRC_FILE

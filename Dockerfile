@@ -10,11 +10,16 @@ RUN apt-get update && apt-get install -y \
     netcat \
     sudo \
     tor \
-    watch \
+    cron \
     gettext-base \
     tor-geoipdb
 
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+
+# Change permission cron job file and load it with crontab
+RUN chmod 0644 cronjob && \
+    crontab cronjob \
+    touch /var/log/cron.log
 
 # Run bash file tor.sh
 USER docker
