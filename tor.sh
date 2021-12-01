@@ -11,18 +11,15 @@ TOR_PASSWORD="password"       # Password for Control Port
 TOR_PROXY_USERNAME="username" # Username for SOCKS5 proxy 
 TOR_PROXY_PASSWORD="password" # Password for SOCKS5 proxy
 
-# TODO: Fix vulnerability here
-sudo chmod 777 $BASE_FOLDER
-
 export TOR_CONTROL_PORT=$TOR_CONTROL_PORT
 export TOR_SOCKS_PORT=$TOR_SOCKS_PORT
 export TOR_PROXY_USERNAME=$TOR_PROXY_USERNAME
 export TOR_PROXY_PASSWORD=$TOR_PROXY_PASSWORD
 
-sudo mkdir -p $BASE_FOLDER/data
+mkdir -p $BASE_FOLDER/data
 export TOR_PROJECT_DATA_FOLDER=$BASE_FOLDER/data
 
-sudo mkdir -p $BASE_FOLDER/logs
+mkdir -p $BASE_FOLDER/logs
 export TOR_PROJECT_LOGS_FOLDER=$BASE_FOLDER/logs
 
 TOR_PROJECT_PASSWORD_HASH=`$(echo tor --hash-password "$TOR_PASSWORD")`
@@ -33,6 +30,8 @@ printf "Tor service starting...\n"
 # Generate torrc file
 envsubst < $TORRC_FILE > $CLEAN_TORRC_FILE
 
+# New Circuit in 10 seconds
+watch -n 10 $BASE_FOLDER/new_circuit.sh
+
 # Tor process
-tor -f $CLEAN_TORRC_FILE\
-    --RunAsDaemon 1\
+tor -f $CLEAN_TORRC_FILE

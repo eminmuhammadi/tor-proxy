@@ -1,14 +1,23 @@
-FROM alpine
+FROM ubuntu:18.04
 
 WORKDIR /app
 # Copy everything from the current directory into the container
 COPY . .
 
 # Upgrade & install packages
-RUN apk --no-cache --no-progress upgrade \
-    apk --no-cache --no-progress add bash curl nc echo pidof kill envsubst tor tor-geoipdb
+RUN apt-get update && apt-get install -y \
+    curl \
+    netcat \
+    sudo \
+    tor \
+    watch \
+    gettext-base \
+    tor-geoipdb
 
-EXPOSE 9050 9051
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
 # Run bash file tor.sh
-CMD ["/bin/bash", "/tor.sh"]
+USER docker
+CMD ["/bin/bash", "tor.sh"]
+
+EXPOSE 9050
