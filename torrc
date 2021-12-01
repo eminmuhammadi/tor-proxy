@@ -2,17 +2,15 @@ DataDirectory $TOR_PROJECT_DATA_FOLDER
 Log notice file $TOR_PROJECT_LOGS_FOLDER/notices.log
 Log notice stderr
 
-SocksPort   0.0.0.0:$TOR_SOCKS_PORT    # Socks Port
+SocksPort 0.0.0.0:$TOR_SOCKS_PORT      # Socks Port
 ControlPort 0.0.0.0:$TOR_CONTROL_PORT  # Control port
 CookieAuthentication 1                 # Authentication for Control port
 RelayBandwidthRate 100 KB              # Throttle traffic to 100KB/s (800Kbps)
 RelayBandwidthBurst 200 KB             # But allow bursts up to 200KB/s (1600Kbps)
 
 HashedControlPassword $TOR_PROJECT_PASSWORD_HASH
-Socks5ProxyUsername
-Socks5ProxyPassword
+Socks5ProxyUsername $TOR_PROXY_USERNAME
+Socks5ProxyPassword $TOR_PROXY_PASSWORD
 
 ExitPolicy reject *:*
 AutomapHostsOnResolve 1
-ControlSocketsGroupWritable 1
-CookieAuthFileGroupReadable 1
