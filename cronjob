@@ -1,2 +1,1 @@
 */13 * * * * * bash /app/new_circuit.sh >> /var/log/cron.log 2>&1
-# Empty line

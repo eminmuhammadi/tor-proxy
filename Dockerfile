@@ -23,6 +23,7 @@ RUN chmod 0644 cronjob && \
 
 # Run bash file tor.sh
 USER docker
-CMD ["/bin/bash", "tor.sh"]
+
+CMD (cron -f &) && tail -f /var/log/cron.log && bash tor.sh
 
 EXPOSE 9050
