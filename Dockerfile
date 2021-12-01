@@ -19,7 +19,10 @@ RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 # Change permission cron job file and load it with crontab
 RUN chmod 0644 cronjob && \
     crontab cronjob \
-    touch /var/log/cron.log
+    touch /var/log/cron.log \
+    chown docker:docker /var/log/cron.log \
+    crontab -u docker /etc/cron.d/restart-cron \
+    chmod u+s /usr/sbin/cron
 
 # Run bash file tor.sh
 USER docker
