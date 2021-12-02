@@ -8,8 +8,6 @@ RelayBandwidthRate 100 KB                # Throttle traffic to 100KB/s (800Kbps)
 RelayBandwidthBurst 200 KB               # But allow bursts up to 200KB/s (1600Kbps)
 
 HashedControlPassword $TOR_PROJECT_PASSWORD_HASH
-Socks5ProxyUsername $TOR_PROXY_USERNAME
-Socks5ProxyPassword $TOR_PROXY_PASSWORD
 
 ExitPolicy reject *:*
 AutomapHostsOnResolve 1
